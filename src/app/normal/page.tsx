@@ -64,7 +64,7 @@ export default function App() {
 //   const [endCursor, setEndCursor] = useState(undefined);
 
   const [getPosts, {loading, error, data}] = useLazyQuery(GET_POSTS);
-
+  const [after, setAfter] = useState("")
   //   const loadNames = async () => {
   //     setIsLoading(true);
   //     const loadedNamesData = await fetchNames(endCursor);
@@ -74,25 +74,30 @@ export default function App() {
   //       setEndCursor(loadedNamesData.endCursor);
   //       setIsLoading(false);
   //     }
-  //   };
+    //   };
+    const [allPosts, setAllPosts] = useState<any[]>([])
   if (error) return <p>Error : {error.message}</p>;
   return (
     <div className="h-screen p-16">
-      {console.log(data?.feed?.edges)}
       <div className="">
         <button
           className="bg-white  p-4 rounded shadow"
           onClick={() => {
-            // loadNames();
-            getPosts({variables: {first: 10}});
+                console.log("after", after)
+              getPosts({ variables: { first: 10, after } }).then(data => {
+                  console.log("from then!")
+                  console.log(data)
+                  setAfter(data?.data?.feed?.pageInfo?.endCursor ?? "")
+                  setAllPosts(posts => [...posts, ...data.data.feed.edges])
+            });
           }}
         >
           load names
         </button>
       </div>
       <ul className="h-40 bg-gray-50 p-4 mt-4 rounded overflow-auto">
-        {data &&
-          data.feed.edges.map((edge) => <li key={edge.node.title}>{edge.node.title}</li>)}
+        {allPosts && allPosts.length>0 &&
+          allPosts.map((edge) => <li key={edge.node.title}>{edge.node.title}</li>)}
         {loading && <li>loading</li>}
       </ul>
     </div>
