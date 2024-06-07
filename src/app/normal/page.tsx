@@ -92,7 +92,7 @@ export default function App() {
             });
           }}
         >
-          load names
+          {allPosts?.length > 0 ? "load more posts" : "load posts"}
         </button>
       </div>
       <ul className="h-40 bg-gray-50 p-4 mt-4 rounded overflow-auto">
