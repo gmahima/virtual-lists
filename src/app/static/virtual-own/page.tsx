@@ -1,7 +1,6 @@
 "use client";
 import {useEffect} from "react";
-import {FixedSizeList as List} from "react-window";
-
+import { List } from "./List";
 export default function Static() {
   const items = [
     "1",
@@ -45,18 +44,23 @@ export default function Static() {
     "39",
     "40",
   ];
-  const Item = ({data, style = {}}) => {
-    return <li style={style}>{data}</li>;
+  const Item = ({children, style = {}}) => {
+    return <div style={style} className={"p-2"}>{children}</div>;
   };
   return (
     <div className="h-screen p-16">
-      <ul
-        className="bg-gray-300 overflow-auto h-[150px]"
+      <div
+        className="border border-black h-[150px] overflow-auto"
       >
-        {items.map((item) => (
-          <Item key={item} data={item}></Item>
-        ))}
-      </ul>
+        <List
+          containerHeight={150}
+          itemHeight={40}
+          list={items}
+          Item={Item}
+          
+        
+        />
+      </div>
     </div>
   );
 }
