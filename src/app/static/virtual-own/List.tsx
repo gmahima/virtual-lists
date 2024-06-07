@@ -9,10 +9,10 @@ export const List = ({list, Item, containerHeight, itemHeight}) => {
 
   const calcListToRender = () => {
     const scrollTop = parentContainerRef.current.parentElement.scrollTop;
-    const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight)); // no of elements scrolled
+    const startIndex = Math.max(0, Math.floor(scrollTop / (itemHeight+20))); // no of elements scrolled
     const endIndex = Math.min(
       list.length,
-      Math.ceil(scrollTop + containerHeight / itemHeight)
+      (Math.min(list.length, Math.ceil((scrollTop + containerHeight) / (itemHeight-20))))
     );
     setListToRender({
       start: startIndex,
@@ -20,6 +20,8 @@ export const List = ({list, Item, containerHeight, itemHeight}) => {
     });
     console.log("container height", containerHeight);
     console.log("scroll top", scrollTop);
+    console.log("start", startIndex);
+    console.log("end", endIndex);
   };
 
   return (

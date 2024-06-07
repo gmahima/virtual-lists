@@ -53,7 +53,7 @@ export default function Static() {
         className="border border-black h-[150px] overflow-auto"
       >
         <List
-          containerHeight={150}
+          containerHeight={160}
           itemHeight={40}
           list={items}
           Item={Item}
