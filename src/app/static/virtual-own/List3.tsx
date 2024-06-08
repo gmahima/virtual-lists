@@ -27,7 +27,7 @@ export const List = ({list, Item, windowHeight, itemHeight, overscan}) => {
     };
     return (
       <ul
-        className="border border-black h-[500px] overflow-auto relative"
+        className="border border-black h-[160px] overflow-auto relative"
         onScroll={(e) => {
           console.log(e.currentTarget.scrollTop);
           setScrollTop(e.currentTarget.scrollTop);
