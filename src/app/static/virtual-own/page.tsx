@@ -1,8 +1,9 @@
 "use client";
 import {useEffect} from "react";
-import { List } from "./List";
+import {List} from "./List2";
 export default function Static() {
   const items = [
+    "0",
     "1",
     "2",
     "3",
@@ -42,7 +43,6 @@ export default function Static() {
     "37",
     "38",
     "39",
-    "40",
   ];
   const Item = ({children, style = {}}) => {
     return <div style={style} className={"p-2"}>{children}</div>;
