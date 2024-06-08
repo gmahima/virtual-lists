@@ -20,7 +20,7 @@ export default function Static() {
   return (
     <div className="h-screen p-16">
       <List
-        overscan={0}
+        overscan={5} //optional, gives a smoother scroll since scrolling is expected
         windowHeight={500}
         itemHeight={40}
         list={items}

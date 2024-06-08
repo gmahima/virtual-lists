@@ -32,12 +32,18 @@ export const List = ({list, Item, windowHeight, itemHeight, overscan}) => {
           setScrollTop(e.currentTarget.scrollTop);
         }}
       >
-        <div className="absolute w-full top-[0px] border border-black"></div>
-        {generateRows()}
-        <div className="absolute w-full top-[500px] border border-black"></div>
-        <div className="absolute w-full top-[1000px] border border-black"></div>
-        <div className="absolute w-full top-[1500px] border border-black"></div>
-        <div className="absolute w-full top-[2000px] border border-black"></div>
+        <div
+          style={{
+            height: `${list.length * itemHeight}px`,
+          }}
+        >
+          <div className="absolute w-full top-[0px] border border-black"></div>
+          {generateRows()}
+          <div className="absolute w-full top-[500px] border border-black"></div>
+          <div className="absolute w-full top-[1000px] border border-black"></div>
+          <div className="absolute w-full top-[1500px] border border-black"></div>
+          <div className="absolute w-full top-[2000px] border border-black"></div>
+        </div>
       </ul>
     );
 };
