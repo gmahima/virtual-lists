@@ -1,10 +1,10 @@
 "use client";
 import {useEffect} from "react";
-import {List} from "./List3";
+import {List} from "./List4";
 export default function Static() {
   const getItems = () => {
     const items = [];
-    for (let index = 0; index < 100; index++) {
+    for (let index = 0; index < 10000; index++) {
       items[index] = {name: "Item " + index, index};
     }
     return items;
