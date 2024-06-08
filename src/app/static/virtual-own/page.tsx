@@ -53,15 +53,13 @@ export default function Static() {
   };
   return (
     <div className="h-screen p-16">
-      <div className="border border-black h-[150px] overflow-auto relative">
-        <List
-          overscan={4}
-          windowHeight={160}
-          itemHeight={40}
-          list={items}
-          Item={Item}
-        />
-      </div>
+      <List
+        overscan={10}
+        windowHeight={500}
+        itemHeight={40}
+        list={items}
+        Item={Item}
+      />
     </div>
   );
 }
