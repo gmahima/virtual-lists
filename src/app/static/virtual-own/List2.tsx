@@ -18,13 +18,10 @@ export const List = ({list, Item, containerHeight, itemHeight}) => {
     }
     const startIndexOffset = scrollTop;
     const endIndexOffset = scrollTop + containerHeight;
-    const startIndex = Math.max(
-      0,
-      Math.floor(startIndexOffset / (itemHeight + 20))
-    ); // how much you have scrolled / item height will give start index
+    const startIndex = Math.max(0, Math.floor(startIndexOffset / itemHeight)); // how much you have scrolled / item height will give start index
     const endIndex = Math.min(
       list.length,
-      Math.ceil((scrollTop + containerHeight) / (itemHeight - 20))
+      Math.ceil((scrollTop + containerHeight) / itemHeight)
     );
     // const startIndex = Math.max(0, Math.floor(scrollTop / (itemHeight + 20))); // no of elements scrolled
     // const endIndex = Math.min(
@@ -45,12 +42,21 @@ export const List = ({list, Item, containerHeight, itemHeight}) => {
     console.log("end", endIndex);
   };
 
-    return (
-      <div ref={parentContainerRef} onWheel={calcListToRender}>
-        {/*@ts-ignore*/}
-        {list.slice(listToRender.start, listToRender.end).map((item) => (
-          <Item key={item}>{item}</Item>
-        ))}
-      </div>
-    );
+  return (
+    <div ref={parentContainerRef} onWheel={calcListToRender}>
+      {/*@ts-ignore*/}
+      {list.slice(listToRender.start, listToRender.end).map((item, index) => (
+        <Item
+          key={item}
+          className="absolute"
+          style={{
+            height: `${itemHeight}px`,
+            top: `${itemHeight * index}px`,
+          }}
+        >
+          {item}
+        </Item>
+      ))}
+    </div>
+  );
 };
