@@ -11,29 +11,33 @@ export const List = ({list, Item, windowHeight, itemHeight, overscan}) => {
     const endIndex = Math.ceil((scrollTop + windowHeight) / itemHeight);
     const paddedEndIndex = Math.min(list.length, endIndex + overscan);
     const generateRows = () => {
-      return list
-        .slice(paddedStartIndex, paddedEndIndex)
-        .map((item, itemIndex) => (
-          <Item
-            key={item}
-            className={"absolute"}
-            style={{
-              top: itemIndex * itemHeight,
-            }}
-          >
-            {item}
-          </Item>
-        ));
+      console.log(paddedStartIndex, paddedEndIndex);
+      return list.slice(paddedStartIndex, paddedEndIndex).map((item) => (
+        <Item
+          key={item.name}
+          className={"absolute"}
+          style={{
+            top: item.index * itemHeight,
+          }}
+        >
+          {item.name}
+        </Item>
+      ));
     };
     return (
       <ul
-        className="border border-black h-[160px] overflow-auto relative"
+        className="border border-black h-[500px] relative overflow-y-scroll"
         onScroll={(e) => {
           console.log(e.currentTarget.scrollTop);
           setScrollTop(e.currentTarget.scrollTop);
         }}
       >
+        <div className="absolute w-full top-[0px] border border-black"></div>
         {generateRows()}
+        <div className="absolute w-full top-[500px] border border-black"></div>
+        <div className="absolute w-full top-[1000px] border border-black"></div>
+        <div className="absolute w-full top-[1500px] border border-black"></div>
+        <div className="absolute w-full top-[2000px] border border-black"></div>
       </ul>
     );
 };

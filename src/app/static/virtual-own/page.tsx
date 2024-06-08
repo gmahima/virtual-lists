@@ -5,7 +5,7 @@ export default function Static() {
   const getItems = () => {
     const items = [];
     for (let index = 0; index < 100; index++) {
-      items[index] = "Item " + index;
+      items[index] = {name: "Item " + index, index};
     }
     return items;
   };
@@ -20,8 +20,8 @@ export default function Static() {
   return (
     <div className="h-screen p-16">
       <List
-        overscan={40}
-        windowHeight={160}
+        overscan={0}
+        windowHeight={500}
         itemHeight={40}
         list={items}
         Item={Item}
